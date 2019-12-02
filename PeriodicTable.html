@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Periodic Table</title>
+</head>
+
+<body bgcolor="#f0f0f5">
+	<H1>
+		Periodic Table
+	</H1>
+
+	<canvas id="myCanvas" </canvas>
+	<script type="module">
+
+		var table  = [
+			"H", "Hydrogen", "1.00794", 1, 1, 1,
+			"He", "Helium", "4.002602", 18, 1, 2,
+			"Li", "Lithium", "6.941", 1, 2, 3,
+			"Be", "Beryllium", "9.012182", 2, 2, 4,
+			"B", "Boron", "10.811", 13, 2, 5,
+			"C", "Carbon", "12.0107", 14, 2, 1,
+			"N", "Nitrogen", "14.0067", 15, 2, 1, 
+			"O", "Oxygen", "15.9994", 16, 2, 1,
+			"F", "Fluorine", "18.9984032", 17, 2, 1,
+			"Ne", "Neon", "20.1797", 18, 2, 2,
+			"Na", "Sodium", "22.98976...", 1, 3, 3,
+			"Mg", "Magnesium", "24.305", 2, 3, 4, 
+			"Al", "Aluminium", "26.9815386", 13, 3, 6,
+			"Si", "Silicon", "28.0855", 14, 3, 5,
+			"P", "Phosphorus", "30.973762", 15, 3, 1,
+			"S", "Sulfur", "32.065", 16, 3, 1, 
+			"Cl", "Chlorine", "35.453", 17, 3, 1, 
+			"Ar", "Argon", "39.948", 18, 3, 2, 
+			"K", "Potassium", "39.948", 1, 4, 3,
+			"Ca", "Calcium", "40.078", 2, 4, 4,
+			"Sc", "Scandium", "44.955912", 3, 4, 7,
+			"Ti", "Titanium", "47.867", 4, 4, 7,
+			"V", "Vanadium", "50.9415", 5, 4, 7,
+			"Cr", "Chromium", "51.9961", 6, 4, 7,
+			"Mn", "Manganese", "54.938045", 7, 4, 7,
+			"Fe", "Iron", "55.845", 8, 4, 7,
+			"Co", "Cobalt", "58.933195", 9, 4, 7,
+			"Ni", "Nickel", "58.6934", 10, 4, 7,
+			"Cu", "Copper", "63.546", 11, 4, 7,
+			"Zn", "Zinc", "65.38", 12, 4, 7,
+			"Ga", "Gallium", "69.723", 13, 4, 6,
+			"Ge", "Germanium", "72.63", 14, 4, 5,
+			"As", "Arsenic", "74.9216", 15, 4, 5,
+			"Se", "Selenium", "78.96", 16, 4, 1,
+			"Br", "Bromine", "79.904", 17, 4, 1,
+			"Kr", "Krypton", "83.798", 18, 4, 2,
+			"Rb", "Rubidium", "85.4678", 1, 5, 3,
+			"Sr", "Strontium", "87.62", 2, 5, 4,
+			"Y", "Yttrium", "88.90585", 3, 5, 7,
+			"Zr", "Zirconium", "91.224", 4, 5, 7,
+			"Nb", "Niobium", "92.90628", 5, 5, 7,
+			"Mo", "Molybdenum", "95.96", 6, 5, 7,
+			"Tc", "Technetium", "(98)", 7, 5, 7,
+			"Ru", "Ruthenium", "101.07", 8, 5, 7,
+			"Rh", "Rhodium", "102.9055", 9, 5, 7,
+			"Pd", "Palladium", "106.42", 10, 5, 7,
+			"Ag", "Silver", "107.8682", 11, 5, 7,
+			"Cd", "Cadmium", "112.411", 12, 5, 7,
+			"In", "Indium", "114.818", 13, 5, 6,
+			"Sn", "Tin", "118.71", 14, 5, 6,
+			"Sb", "Antimony", "121.76", 15, 5, 5,
+			"Te", "Tellurium", "127.6", 16, 5, 5,
+			"I", "Iodine", "126.90447", 17, 5, 1, 
+			"Xe", "Xenon", "131.293", 18, 5, 2,
+			"Cs", "Caesium", "132.9054", 1, 6, 3,
+			"Ba", "Barium", "137.33", 2, 6, 4,
+			"La", "Lanthanum", "138.90547", 4, 9, 8,
+			"Ce", "Cerium", "140.116", 5, 9, 8,
+			"Pr", "Praseodymium", "140.90765", 6, 9, 8,
+			"Nd", "Neodymium", "144.242", 7, 9, 8,
+			"Pm", "Promethium", "(145)", 8, 9, 8,
+			"Sm", "Samarium", "150.36", 9, 9, 8,
+			"Eu", "Europium", "151.964", 10, 9, 8,
+			"Gd", "Gadolinium", "157.25", 11, 9, 8,
+			"Tb", "Terbium", "158.92535", 12, 9, 8,
+			"Dy", "Dysprosium", "162.5", 13, 9, 8,
+			"Ho", "Holmium", "164.93032", 14, 9, 8,
+			"Er", "Erbium", "167.259", 15, 9, 8,
+			"Tm", "Thulium", "168.93421", 16, 9, 8,
+			"Yb", "Ytterbium", "173.054", 17, 9, 8,
+			"Lu", "Lutetium", "174.9668", 18, 9, 8,
+			"Hf", "Hafnium", "178.49", 4, 6, 7,
+			"Ta", "Tantalum", "180.94788", 5, 6, 7,
+			"W", "Tungsten", "183.84", 6, 6, 7,
+			"Re", "Rhenium", "186.207", 7, 6, 7,
+			"Os", "Osmium", "190.23", 8, 6, 7,
+			"Ir", "Iridium", "192.217", 9, 6, 7,
+			"Pt", "Platinum", "195.084", 10, 6, 7,
+			"Au", "Gold", "196.966569", 11, 6, 7,
+			"Hg", "Mercury", "200.59", 12, 6, 7,
+			"Tl", "Thallium", "204.3833", 13, 6, 6,
+			"Pb", "Lead", "207.2", 14, 6, 6,
+			"Bi", "Bismuth", "208.9804", 15, 6, 6,
+			"Po", "Polonium", "(209)", 16, 6, 6,
+			"At", "Astatine", "(210)", 17, 6, 5,
+			"Rn", "Radon", "(222)", 18, 6, 2,
+			"Fr", "Francium", "(223)", 1, 7, 3,
+			"Ra", "Radium", "(226)", 2, 7, 4,
+			"Ac", "Actinium", "(227)", 4, 10, 9,
+			"Th", "Thorium", "232.03806", 5, 10, 9,
+			"Pa", "Protactinium", "231.0588", 6, 10, 9,
+			"U", "Uranium", "238.02891", 7, 10, 9,
+			"Np", "Neptunium", "(237)", 8, 10, 9,
+			"Pu", "Plutonium", "(244)", 9, 10, 9,
+			"Am", "Americium", "(243)", 10, 10, 9,
+			"Cm", "Curium", "(247)", 11, 10, 9,
+			"Bk", "Berkelium", "(247)", 12, 10, 9,
+			"Cf", "Californium", "(251)", 13, 10, 9,
+			"Es", "Einstenium", "(252)", 14, 10, 9,
+			"Fm", "Fermium", "(257)", 15, 10, 9,
+			"Md", "Mendelevium", "(258)", 16, 10, 9,
+			"No", "Nobelium", "(259)", 17, 10, 9,
+			"Lr", "Lawrencium", "(262)", 18, 10, 9,
+			"Rf", "Rutherfordium", "(267)", 4, 7, 7,
+			"Db", "Dubnium", "(268)", 5, 7, 7,
+			"Sg", "Seaborgium", "(271)", 6, 7, 7,
+			"Bh", "Bohrium", "(272)", 7, 7, 7,
+			"Hs", "Hassium", "(270)", 8, 7, 7,
+			"Mt", "Meitnerium", "(276)", 9, 7, 10,
+			"Ds", "Darmstadium", "(281)", 10, 7, 10,
+			"Rg", "Roentgenium", "(280)", 11, 7, 10,
+			"Cn", "Copernicium", "(285)", 12, 7, 7,
+			"Nh", "Nihonium", "(286)", 13, 7, 10,
+			"Fl", "Flerovium", "(289)", 14, 7, 6,
+			"Mc", "Moscovium", "(290)", 15, 7, 10,
+			"Lv", "Livermorium", "(293)", 16, 7, 10,
+			"Ts", "Tennessine", "(294)", 17, 7, 10,
+			"Og", "Oganesson", "(294)", 18, 7, 10,
+		];
+				
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		var widthWindow = window.innerWidth;
+		var heightWindow = window.innerHeight;
+
+
+		if (heightWindow < 750) {
+			widthWindow = 1200;
+			heightWindow = 750;
+		}
+		if (widthWindow < 1200) {
+			widthWindow = 1200;
+			heightWindow = 750;
+		}
+
+
+		ctx.canvas.width  = widthWindow;
+		ctx.canvas.height = heightWindow;
+
+		var i;
+		var letterName;
+		var row;
+		var column;
+		var offset = 50;
+		var colornumber;
+		var colorname;
+		var heightOffset;
+		var widthOffset;
+		heightOffset = heightWindow/14;
+		widthOffset = widthWindow/22;
+
+		if (heightOffset < 55) {
+			heightOffset = 55;
+		}
+		if (widthOffset < 55) {
+			widthOffset = 55;
+		}
+
+		colornumber = table[(6)-1];
+		letterName = table[0];
+		row = ((heightOffset+5)*table[(1*6)-2] + offset);
+		column = ((widthOffset+5)*table[(1*6)-3]);
+		ctx.beginPath();
+		ctx.lineWidth = "1";
+		ctx.strokeStyle = "black";
+		ctx.rect(column, row, 50, 50);
+		ctx.font = "20pt Verdana";
+		ctx.fillStyle = "#6fdc6f";
+		ctx.fillText(letterName, column+2, row+43);
+		ctx.font = "10pt Verdana";
+		ctx.fillStyle = "black";
+		ctx.fillText(1, column+2, row+13);
+		ctx.stroke();
+		
+		buildButton(1, 100, 100);
+
+		for (i = 2; i < 119; i++) {
+			colornumber = table[(i*6)-1];
+			letterName = table[(i-1)*6];
+			row = ((heightOffset+5)*table[(i*6)-2] + offset);
+			column = ((widthOffset+5)*table[(i*6)-3]);
+
+			if (colornumber == 1) {
+				colorname = "#6fdc6f";
+			} else if (colornumber == 2) {
+				colorname = "#dc6fdc";
+			} else if (colornumber == 3) {
+				colorname = "#dc6f6f";
+			}else if (colornumber == 4) {
+				colorname = "#dca66f";
+			}else if (colornumber == 5) {
+				colorname = "#dcdc6f";
+			}else if (colornumber == 6) {
+				colorname = "#c16fdc";
+			}else if (colornumber == 7) {
+				colorname = "#6fc1dc";
+			}else if (colornumber == 8) {
+				colorname = "#6f6fdc";
+			}else if (colornumber == 9) {
+				colorname = "#dc6f8b";
+			}else {
+				colorname = "#999999";
+			}
+
+			
+			ctx.beginPath();
+			ctx.lineWidth = "1";
+			ctx.strokeStyle = "black";
+			ctx.rect(column, row, 50, 50);
+			ctx.font = "20pt Verdana";
+			ctx.fillStyle = colorname;
+			ctx.fillText(letterName, column+2, row+43);
+			ctx.font = "10pt Verdana";
+			ctx.fillStyle = "black";
+			ctx.fillText(i, column+2, row+13);
+			ctx.stroke();
+			
+			
+		} 
+
+
+		row = heightOffset*13;
+		column = widthOffset;
+		ctx.font = "14pt Verdana";
+		ctx.fillStyle = "black";
+		ctx.fillText("Developed by: Timothy Goodwin, Jacob Morris, Connor Shain, and Demertrius Steele", column+2, row+20);
+
+		ctx.beginPath();
+		ctx.lineWidth = "1";
+		ctx.strokeStyle = "black";
+		ctx.rect((widthOffset*3.25), heightOffset, heightOffset*3.75, heightOffset*3.75);
+		ctx.font = "20pt Verdana";
+		ctx.fillStyle = "black";
+		ctx.stroke();
+
+		canvas.addEventListener("mousedown", getPosition, false);
+		
+		function buildButton(id, x, y){
+			var button = document.createElement("BUTTON");
+			button.style.top = y;
+			button.style.left = x;
+			button.style.width = 50;
+			button.style.height = 50;
+			//button.setAttribute("value","generated button");
+			//button.className = button.className + "button built";
+			document.body.appendChild(button);
+		}
+		
+
+		function getPosition(event)
+		{
+		  var x = event.pageX;
+		  var y = event.pageY;
+			if(x>100 && x<150 && y>200 && y<250)  {
+				window.open("https://en.wikipedia.org/wiki/Hydrogen");
+			}
+		} 
+
+		document.onmousemove = function(e){
+
+			var x = event.pageX;     // Get the horizontal coordinate
+			var y = event.pageY;     // Get the vertical coordinate
+			if(x>100 && x<150 && y>200 && y<250)  {
+				ctx.font = "22pt Verdana";
+				ctx.fillStyle = "black";
+				ctx.fillText(table[1], widthOffset*3.25, heightOffset*1.5);
+				ctx.font = "80pt Verdana";
+				ctx.fillStyle = "black";
+				ctx.fillText(table[0], widthOffset*3.25, heightOffset*3);
+				ctx.font = "22pt Verdana";
+				ctx.fillStyle = "black";
+				ctx.fillText(table[2], widthOffset*3.25, heightOffset*4);
+			}else{
+				ctx.beginPath();
+				ctx.rect((widthOffset*3.25), heightOffset, heightOffset*3.75, heightOffset*3.75);
+				ctx.fillStyle = "#f0f0f5";
+				ctx.fill(); 
+				ctx.stroke();
+			}
+		}
+
+
+		//	Stored as "number", "name", "description", "melting C", "melting F", "boiling C", "boiling F", "yr discovered", "discovered by", "yr named"
+		/*var moreinfo = [
+				"1", "Hydrogen", "A colorless, odorless, nontoxic gas that is the most abundant chemical substance in the universe.", "-259.16", "-434.49", "-252.88", "-423.18", "1766", "Henry Cavendish", "1783",
+				"2", "Helium", "A colorless, odorless, nontoxic noble gas that has the lowest boiling point among all the elements, and is the second most abundant element in the universe.", "-272.20", "-457.96", "-268.93", "-452.07", "1868", "Pierre Janssen and Norman Lockyer", "1895",
+				"3", "Lithium", "A highly reactive and flammable metal that must be stored in mineeral oil. At room temperature, it is the lightest metal and the lightest solid element.", "180.50", "356.90", "1330", "2426", "1817", "Johan August Arfwedson", "1821",
+				"4", "Beryllium", "A relatively rare element that only occurs naturally in combination with other elements. It has high thermal stability, conductivity, and low density which makes it a desirable aerospace material.", "1287", "2349", "2469", "4476", "1798", "Louis Nicolas Vauquelin", "1828",
+				"5", "Boron", "A low-abundance element usually found concentrated in its water-soluable compounds, the borate minerals. The largest known boron deposits are in Turkey.", "2076", "3769", "3927", "7101", "1808", "Joseph Louis Gay-Lussac and Louis Jaques Thenard", "1808",
+				"6", "Carbon", "A nonmetallic element, and one of the few elements known about since antiquity. Is a very abundant element both on earth and in the universe. Its unique chemical properties make it serve as a common element of all known life.", "None", "None", "3642", "6588", "3750 BC", "Egyptians and Sumerians", "1789",
+				"7", "Nitrogen", "A common element that is a colorless and odorless diatomic gas at room temperature. It takes its name from the greek word to choke, in reference to its asphyxiating properties.", "-210", "-346", "-195.80", "-320.43", "1772", "Daniel Rutherford", "1790",
+				"8", "Oxygen", "A highly reactive nonmetal that oxidizes with most other elements and cmpounds. Is one of the most abundant elements in the universe, just behind hydrogen and helium.", "-218.79", "-361.89", "-182.96", "-297.33", "1771", "Carl Wilhelm Scheele", "1777",
+				"9", "Fluorine", "An extremely reactive, highly toxic, pale yellow gas that reacts with almost all other elements. Is a fairly common element that historically was added to metal ores to lower their melting points for smelting.", "-219.67", "-363.41", "-188.11", "-306.60", "1810", "Andre-Marie Ampere", "1886",
+				"10", "Neon", "A colorless, odorless, intert gas that was discovered as one of the three rare inert elements remaining in dry air. Neon was immediately recognized as a new element from its bright red emission spectrum we know it for today.", "-248.59", "-415.46", "-246.05", "-410.88", "1898", "William Ramsay and Morris Travers", "1898",
+		];
+		*/
+
+
+	</script>
+	  
+</body>
+</html>
+
